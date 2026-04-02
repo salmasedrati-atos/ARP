@@ -6,8 +6,8 @@ import { UserDashboard } from './user-dashboard/user-dashboard';
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
-  { path: 'superadmin-dashboard', component: SuperadminDashboard},
-  { path: 'admin-dashboard', component: AdminDashboard},
+  { path: 'superadmin-dashboard', component: SuperadminDashboard },
+  { path: 'admin-dashboard', component: AdminDashboard },
   { path: 'user-dashboard', component: UserDashboard },
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: '' },
 ];

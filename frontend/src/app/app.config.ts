@@ -8,8 +8,8 @@ import { routes } from './app.routes';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideHttpClient(),              // <-- pour HttpClient
-    importProvidersFrom(FormsModule), // <-- pour [(ngModel)]
+    provideHttpClient(),
+    importProvidersFrom(FormsModule),
     provideRouter(routes)
   ]
 };

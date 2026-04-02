@@ -13,6 +13,5 @@ export class App {
   protected readonly title = signal('arp-frontend');
 }
 
-export const appProviders = [
-  provideRouter(routes)
-];
+
+export const appProviders = [provideRouter(routes)];

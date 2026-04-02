@@ -1,33 +1,38 @@
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthService } from '../auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  standalone: true,
+  imports: [CommonModule, FormsModule], // ← très important
+  templateUrl: './login.html',
+  styleUrls: ['./login.scss'],
 })
 export class LoginComponent {
+  loginUser = '';
+  password = '';
+  errorMessage = '';
 
-  loginUser: string = '';
-  password: string = '';
-  errorMessage: string = '';
-
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) {}
 
   login() {
+    console.log('login clicked'); // pour debug
     this.authService.login(this.loginUser, this.password).subscribe({
       next: (res) => {
         const role = res.role;
-
-        // Redirection selon le rôle
         if (role === 'SUPERADMIN') this.router.navigate(['/superadmin-dashboard']);
         else if (role === 'ADMIN') this.router.navigate(['/admin-dashboard']);
         else this.router.navigate(['/user-dashboard']);
       },
       error: () => {
         this.errorMessage = 'Identifiants invalides';
-      }
+      },
     });
   }
 }
